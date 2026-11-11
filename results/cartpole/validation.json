@@ -1,0 +1,59 @@
+{
+  "episodes_per_policy": 48,
+  "first_seed": 300000,
+  "means": {
+    "random": 22.25,
+    "initial": 9.5,
+    "early": 9.5,
+    "last": 27.291666666666668,
+    "selected": 500.0
+  },
+  "selected_minus": {
+    "random": {
+      "delta": 477.75,
+      "ci_low": 473.9994791666667,
+      "ci_high": 481.1458333333333,
+      "wins": 48,
+      "ties": 0
+    },
+    "initial": {
+      "delta": 490.5,
+      "ci_low": 490.2708333333333,
+      "ci_high": 490.7291666666667,
+      "wins": 48,
+      "ties": 0
+    },
+    "early": {
+      "delta": 490.5,
+      "ci_low": 490.2708333333333,
+      "ci_high": 490.7291666666667,
+      "wins": 48,
+      "ties": 0
+    },
+    "last": {
+      "delta": 472.7083333333333,
+      "ci_low": 471.3333333333333,
+      "ci_high": 474.0416666666667,
+      "wins": 48,
+      "ties": 0
+    }
+  },
+  "early_episode": 20,
+  "last_episode": 500,
+  "selected_episode": 180,
+  "grid": {
+    "grid_states": 625,
+    "informative_states": 95,
+    "informative_gap_minimum": 0.1,
+    "action_agreement": 95,
+    "mean_regret": 2.3695333230540427e-05,
+    "worst_regret": 0.0031067846085051087
+  },
+  "boundaries": {
+    "cap_step": 3,
+    "max_q_next_at_cap": 10.890421867370605,
+    "target_at_cap": 11.345900535583496,
+    "target_if_mislabeled_terminal": 1.0,
+    "failure_target": 1.0
+  }
+}

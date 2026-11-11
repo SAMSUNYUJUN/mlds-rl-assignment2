@@ -1,0 +1,42 @@
+{
+  "config": {
+    "game": "mspacman",
+    "env_id": "ALE/MsPacman-v5",
+    "gamma": 0.99,
+    "episodes": 4000,
+    "num_envs": 24,
+    "capacity": 75000,
+    "learning_starts": 12000,
+    "train_every": 12,
+    "batch_size": 64,
+    "learning_rate": 0.00015,
+    "target_every": 800,
+    "epsilon_steps": 550000,
+    "epsilon_end": 0.05,
+    "n_step": 3,
+    "reward_scale": 10,
+    "life_loss_terminal": true,
+    "validation_every": 250,
+    "validation_episodes": 24,
+    "seed": 42,
+    "failure_reward": null,
+    "normalize_cartpole": false
+  },
+  "device": "cuda",
+  "hardware": "NVIDIA RTX A6000",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "torch": "2.6.0+cu124",
+  "gymnasium": "1.2.2",
+  "parameter_count": 424538,
+  "shape": [
+    4,
+    84,
+    84
+  ],
+  "actions": 9,
+  "selection_seed": 100000,
+  "episodes": 4000,
+  "steps": 3045201,
+  "updates": 252767,
+  "elapsed_seconds": 6682.953144129366
+}

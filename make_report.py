@@ -296,8 +296,8 @@ def generate(cart_dir, ms_dir, output):
                   "blue favors left. The right panel uses realized discounted return through termination or 500 steps.", "caption")
         paragraph(f"Among the {grid['informative_states']} states with an absolute return gap of at least 0.10, the "
                   f"network preferred the better first action in {grid['action_agreement']}. Following the predicted first "
-                  f"action lost {grid['mean_regret']:.2f} discounted reward on average across all states, with worst loss "
-                  f"{grid['worst_regret']:.2f}. This grid includes angles and velocities beyond the normal reset distribution.")
+                  f"action lost {grid['mean_regret']:.6f} discounted reward on average across all states, with worst loss "
+                  f"{grid['worst_regret']:.4f}. This grid includes angles and velocities beyond the normal reset distribution.")
         policy_table(val, "steps", [("random", "Uniform random"), ("initial", "Untrained greedy"),
                                     ("last", f"Final checkpoint ({val['last_episode']:,})"), ("selected", "Selected greedy")])
         paragraph(f"The comparison uses {val['episodes_per_policy']} common reset seeds. The intervals resample paired "
@@ -342,11 +342,12 @@ def generate(cart_dir, ms_dir, output):
         first_loss = f" at action {game_events[0]['step']:,}" if game_events else ""
         cap = val["forced_cap"]
         d = ", ".join(f"{x:.6g}" for x in cap["bootstrap_multipliers"])
+        g = ", ".join(f"{x:.6g}" for x in cap["returns"])
         paragraph(f"The replay tail drains with zero bootstrap at a lost life{first_loss}. The game continues with the "
                   "same score accumulator. In the recorded trajectory, the replay returns match an independent backward "
                   f"calculation at all {len(val['boundaries'])} life and episode boundaries. On the same trajectory capped "
-                  f"at 160 emulator frames, the final {len(cap['bootstrap_multipliers'])} transitions kept bootstrap "
-                  f"multipliers {d}. Reset-only steps are excluded from the traces and replay.")
+                  f"at {cap['frame_limit']:,} emulator frames, the replay tail retained returns ({g}) and bootstrap "
+                  f"multipliers ({d}). Reset-only steps are excluded from the traces and replay.")
 
         page("Reproduction", "Commands, parameter settings and further validation")
         paragraph("Run the following commands from a DeepDish login. Set A2_GPU to the assigned GPU index. The script "

@@ -194,19 +194,29 @@ def atari_trace(model, config, device, workers, *, frame_limit=None):
         env.close()
 
 
+def atari_boundaries(run_dir, model, config, device, workers):
+    trace, boundaries = atari_trace(model, config, device, workers)
+    first_boundary = boundaries[0]["step"]
+    # End the comparison at a scored transition so its replay tail tests discounting too.
+    cap_step = next((row["step"] for row in trace[:first_boundary - 1]
+                     if row["reward"] and row["step"] >= config.n_step), min(40, first_boundary - 1))
+    frame_limit = cap_step * gym.spec(config.env_id).kwargs["frameskip"]
+    short, short_boundaries = atari_trace(model, config, device, workers, frame_limit=frame_limit)
+    assert len(short) == cap_step and short[-1]["truncated"] and not short[-1]["terminated"]
+    assert all(short_row["action"] == full_row["action"] and short_row["reward"] == full_row["reward"]
+               for short_row, full_row in zip(short, trace))
+    write_csv(run_dir / "validation_trace.csv", trace[0].keys(), trace)
+    return {"boundaries": boundaries, "forced_cap": {**short_boundaries[-1], "frame_limit": frame_limit},
+            "trace_seed": PROBE_SEED + 100}
+
+
 def validate(run_dir, device, workers, count):
     model, config, payload = load_checkpoint(run_dir / "best.pt", device)
     print(f"Validating {config.env_id}, selected checkpoint {payload['episode']}", flush=True)
     results = compare_policies(run_dir, model, config, device, workers, count)
     results["selected_episode"] = payload["episode"]
     if config.pixels:
-        trace, boundaries = atari_trace(model, config, device, workers)
-        short, short_boundaries = atari_trace(model, config, device, workers, frame_limit=160)
-        assert short[-1]["truncated"] and not short[-1]["terminated"]
-        assert all(short[i]["action"] == trace[i]["action"] and short[i]["reward"] == trace[i]["reward"]
-                   for i in range(len(short)))
-        write_csv(run_dir / "validation_trace.csv", trace[0].keys(), trace)
-        results.update(boundaries=boundaries, forced_cap=short_boundaries[-1], trace_seed=PROBE_SEED + 100)
+        results.update(atari_boundaries(run_dir, model, config, device, workers))
     else:
         results["grid"] = cartpole_grid(run_dir, model, config, device, workers)
         results["boundaries"] = cartpole_boundaries(model, config, device)

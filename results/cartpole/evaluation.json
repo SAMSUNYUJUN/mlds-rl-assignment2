@@ -1,0 +1,16 @@
+{
+  "episodes": 500,
+  "mean": 500.0,
+  "sd": 0.0,
+  "median": 500.0,
+  "min": 500.0,
+  "max": 500.0,
+  "terminated": 0,
+  "truncated": 500,
+  "balanced_to_500": 500,
+  "checkpoint_episode": 180,
+  "checkpoint_steps": 5773,
+  "env_seed_start": 240000,
+  "lanes": 25,
+  "device": "cuda"
+}

@@ -2,6 +2,13 @@
 
 Deep Q-Network experiments for `CartPole-v1` and `ALE/MsPacman-v5`. Both agents use uniform replay, a target network, a dueling action-value network, and three-step Double DQN targets in the reported runs.
 
+[Assignment 2 PDF report](output/pdf/assignment2_report.pdf)
+
+| Environment | Training episodes | Greedy evaluation mean ± SD (500 episodes) |
+| --- | ---: | ---: |
+| CartPole-v1 | 500 | 500.00 ± 0.00 |
+| ALE/MsPacman-v5 | 4,000 | 2,658.32 ± 601.03 |
+
 ## Run on one DeepDish GPU
 
 ```bash
@@ -40,7 +47,7 @@ Each evaluation defaults to 500 greedy episodes, with fixed quotas of 20 episode
 | CartPole first-action intervention | Center and stop the cart, sweep 25 pole angles and 25 pole angular velocities, and force left or right for the first step. Thereafter, both rollouts use the selected greedy controller. Compare their discounted returns to the sign of the network's action preference and record the regret of following it. |
 | CartPole time cap and failure | Replay the same first three actions in a normal environment and a three-step cap. Confirm the shared successor and show how the target changes if the cap is treated as a physical failure. Force a threshold crossing from a near-failure state and verify the target uses the immediate reward. |
 | MsPacman frame history | On the same paired seeds, repeat the newest frame across all four input channels for the selected model. This removes temporal variation and changes the input distribution. The score contrast measures the effect of that intervention on this trained policy. |
-| MsPacman life and time boundaries | Trace one full seeded greedy game. At each boundary, independently compute the final discounted reward sums and compare the replay successors and multipliers. Replay the prefix under a 160-frame time limit to verify that the cap retains the three bootstrap multipliers. |
+| MsPacman life and time boundaries | Trace one full seeded greedy game. At each boundary, independently compute the final discounted reward sums and compare the replay successors and multipliers. Cap the same trajectory at its first scoring step before life loss to check the nonzero discounted rewards and retained bootstrap multipliers. |
 
 CartPole ends on physical failure or the 500-step time limit. On a time limit, replay bootstraps from the last observation. If a physical failure and time cap occur together, the target treats the transition as terminal. MsPacman uses a learning terminal at a lost life while continuing to accumulate the full game score. Each trajectory owns its own return queue, and reset-only steps are excluded from replay and reward counts.
 

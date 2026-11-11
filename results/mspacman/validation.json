@@ -1,0 +1,136 @@
+{
+  "episodes_per_policy": 48,
+  "first_seed": 300000,
+  "means": {
+    "random": 245.41666666666666,
+    "initial": 70.0,
+    "early": 358.9583333333333,
+    "last": 2247.0833333333335,
+    "selected": 2585.4166666666665,
+    "frozen_frames": 1532.7083333333333
+  },
+  "selected_minus": {
+    "random": {
+      "delta": 2340.0,
+      "ci_low": 2173.328125,
+      "ci_high": 2503.1354166666665,
+      "wins": 48,
+      "ties": 0
+    },
+    "initial": {
+      "delta": 2515.4166666666665,
+      "ci_low": 2353.1197916666665,
+      "ci_high": 2676.671875,
+      "wins": 48,
+      "ties": 0
+    },
+    "early": {
+      "delta": 2226.4583333333335,
+      "ci_low": 2084.1666666666665,
+      "ci_high": 2375.2083333333335,
+      "wins": 48,
+      "ties": 0
+    },
+    "last": {
+      "delta": 338.3333333333333,
+      "ci_low": 178.328125,
+      "ci_high": 499.3854166666665,
+      "wins": 30,
+      "ties": 3
+    },
+    "frozen_frames": {
+      "delta": 1052.7083333333333,
+      "ci_low": 841.6666666666666,
+      "ci_high": 1261.4635416666665,
+      "wins": 43,
+      "ties": 1
+    }
+  },
+  "early_episode": 250,
+  "last_episode": 4000,
+  "selected_episode": 2250,
+  "boundaries": [
+    {
+      "step": 567,
+      "kind": "life loss",
+      "raw_rewards": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "returns": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bootstrap_multipliers": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "lives": 2
+    },
+    {
+      "step": 747,
+      "kind": "life loss",
+      "raw_rewards": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "returns": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bootstrap_multipliers": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "lives": 1
+    },
+    {
+      "step": 878,
+      "kind": "game over",
+      "raw_rewards": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "returns": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bootstrap_multipliers": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "lives": 0
+    }
+  ],
+  "forced_cap": {
+    "step": 61,
+    "kind": "time limit",
+    "raw_rewards": [
+      0.0,
+      0.0,
+      10.0
+    ],
+    "returns": [
+      0.9801,
+      0.99,
+      1.0
+    ],
+    "bootstrap_multipliers": [
+      0.970299,
+      0.9801,
+      0.99
+    ],
+    "lives": 3,
+    "frame_limit": 244
+  },
+  "trace_seed": 300100
+}

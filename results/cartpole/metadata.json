@@ -1,0 +1,40 @@
+{
+  "config": {
+    "game": "cartpole",
+    "env_id": "CartPole-v1",
+    "gamma": 0.95,
+    "episodes": 500,
+    "num_envs": 8,
+    "capacity": 50000,
+    "learning_starts": 1024,
+    "train_every": 4,
+    "batch_size": 64,
+    "learning_rate": 0.0005,
+    "target_every": 250,
+    "epsilon_steps": 12000,
+    "epsilon_end": 0.03,
+    "n_step": 3,
+    "reward_scale": 1,
+    "life_loss_terminal": false,
+    "validation_every": 20,
+    "validation_episodes": 80,
+    "seed": 137,
+    "failure_reward": null,
+    "normalize_cartpole": true
+  },
+  "device": "cuda",
+  "hardware": "NVIDIA RTX A6000",
+  "platform": "Linux-6.8.0-138-generic-x86_64-with-glibc2.35",
+  "torch": "2.6.0+cu124",
+  "gymnasium": "1.2.2",
+  "parameter_count": 34051,
+  "shape": [
+    4
+  ],
+  "actions": 2,
+  "selection_seed": 100000,
+  "episodes": 500,
+  "steps": 115429,
+  "updates": 28602,
+  "elapsed_seconds": 404.50599517300725
+}
